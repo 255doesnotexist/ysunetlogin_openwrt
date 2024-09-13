@@ -1,0 +1,15 @@
+#!/bin/bash
+time=$(date "+%Y-%m-%d %H:%M:%S")
+echo "try to auth at ${time}" >> /tmp/auth.log
+result=$(python "/etc/storage/netlogin.py" "你的学号" "你的校园网密码" "运营商编号（0.校园网 1.中国移动 2.中国联通 3.中国电信）")
+if [ $? -eq 0 ]; then
+	echo "state: succeed"
+else
+	echo "state: failed"
+	echo "up down network adapter and retry"
+	ifconfig apclii0 down
+	ifconfig apclii0 up
+	result=$(python "/etc/storage/netlogin.py" "你的学号" "你的校园网密码" "运营商编号（0.校园网 1.中国移动 2.中国联通 3.中国电信）")
+fi
+echo "result: ${result}" >> /tmp/auth.log
+iptables -t mangle -A POSTROUTING -j TTL --ttl-set 128

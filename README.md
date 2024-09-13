@@ -57,7 +57,13 @@
    - `start_hour` 和 `end_hour`：设置学校自动断网的时间段（默认配置即已适合燕山大学校园网环境）
    - `max_attempts`：设置最大重试次数
 
-3. 保存并退出文件。
+3. 配置其中含绝对路径的脚本文件路径（可选）：
+   ```shell
+   python /etc/storage/netlogin.py logout
+   /etc/storage/auth.sh # 将此处和上方替换为你认证脚本的位置
+   ```
+
+4. 保存并退出文件。
 
 ### 设置定时任务
 

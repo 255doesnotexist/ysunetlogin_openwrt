@@ -31,8 +31,8 @@ while [[ $attempt -lt $max_attempts ]]; do
     if [[ $curl_exit_code -eq 28 ]] || echo "$response" | grep -q "auth.ysu.edu.cn"; then
         echo "[$current_time] 检测到网络问题或需要认证，尝试重新认证..." >> "$log_file"
         # 执行认证操作
-        python netlogin.py logout
-        ./auth.sh
+        python /etc/storage/netlogin.py logout
+        /etc/storage/auth.sh
         
         # 等待5秒
         sleep 5

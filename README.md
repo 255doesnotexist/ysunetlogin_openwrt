@@ -68,7 +68,7 @@
    crontab -e
    ```
 
-2. 添加以下行来每5分钟运行一次 daemon 脚本：
+2. 添加以下行来每1分钟运行一次 daemon 脚本：
    ```
    */1 * * * * /etc/storage/daemon.sh
    ```
